@@ -39,7 +39,7 @@ export const useLocations = () => {
     const fetchLocations = async () => {
       try {
         setLoading(true)
-        const response = await fetch('/src/data/location.json')
+        const response = await fetch('/location.json')
         if (!response.ok) {
           throw new Error('Failed to fetch locations')
         }
