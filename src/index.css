@@ -45,3 +45,13 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .rotate-360 {
+    transform: rotate(360deg);
+  }
+
+  .hover\:rotate-360:hover {
+    transform: rotate(360deg);
+  }
+}
