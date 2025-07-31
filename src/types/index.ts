@@ -1,3 +1,3 @@
 export * from './auth'
 export * from './api'
-export * from './user' 
+export type { UserProfile, UserPreferences, NotificationSettings } from './user' 

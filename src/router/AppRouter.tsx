@@ -1,15 +1,14 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { ProtectedRoute } from './ProtectedRoute'
-import { MainLayout } from '@/components/layout/MainLayout'
-import { AuthLayout } from '@/components/layout/AuthLayout'
 import { LoginPage } from '@/pages/auth/LoginPage'
-import { DashboardPage } from '@/pages/dashboard/DashboardPage'
 import { ControlCenterPage } from '@/pages/dashboard/ControlCenterPage'
 import { AnalyticsPage } from '@/pages/dashboard/AnalyticsPage'
 import { InsightsPage } from '@/pages/dashboard/InsightsPage'
 import { PerformancePage } from '@/pages/dashboard/PerformancePage'
 import { ReportsPage } from '@/pages/dashboard/ReportsPage'
 import { SystemSettingsPage } from '@/pages/settings/SystemSettingsPage'
+import { MainLayout } from '@/components/layout/MainLayout'
+import { AuthLayout } from '@/components/layout/AuthLayout'
+import { ProtectedRoute } from './ProtectedRoute'
 
 export const AppRouter = () => {
   return (

@@ -1,19 +1,23 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { User, LoginCredentials, AuthState } from '@/types/auth'
+import type { User, UserRole, LoginCredentials } from '@/types/auth'
 
-interface AuthStore extends AuthState {
+interface AuthState {
+    user: User | null
+    isAuthenticated: boolean
+    isLoading: boolean
+    error: string | null
     login: (credentials: LoginCredentials) => Promise<void>
     logout: () => void
     setUser: (user: User) => void
-    setLoading: (loading: boolean) => void
+    setLoading: (isLoading: boolean) => void
     setError: (error: string | null) => void
     clearError: () => void
 }
 
-export const useAuthStore = create<AuthStore>()(
+export const useAuthStore = create<AuthState>()(
     persist(
-        (set, get) => ({
+        (set) => ({
             user: null,
             isAuthenticated: false,
             isLoading: false,
@@ -22,66 +26,40 @@ export const useAuthStore = create<AuthStore>()(
             login: async (credentials: LoginCredentials) => {
                 set({ isLoading: true, error: null })
                 try {
-                    // TODO: Replace with actual API call
-                    // const response = await authApi.login(credentials)
-
                     // Simulate API call
                     await new Promise(resolve => setTimeout(resolve, 1000))
 
                     const mockUser: User = {
                         id: '1',
-                        email: credentials.email,
                         name: 'Admin User',
-                        role: 'admin',
+                        email: credentials.email,
+                        role: 'admin' as UserRole,
                         avatar: undefined,
                         createdAt: new Date().toISOString(),
-                        updatedAt: new Date().toISOString(),
+                        updatedAt: new Date().toISOString()
                     }
 
-                    set({
-                        user: mockUser,
-                        isAuthenticated: true,
-                        isLoading: false,
-                        error: null,
-                    })
+                    set({ user: mockUser, isAuthenticated: true, isLoading: false })
                 } catch (error) {
-                    set({
-                        isLoading: false,
-                        error: error instanceof Error ? error.message : 'Login failed',
-                    })
+                    set({ error: 'Login failed', isLoading: false })
                 }
             },
 
             logout: () => {
-                set({
-                    user: null,
-                    isAuthenticated: false,
-                    error: null,
-                })
+                set({ user: null, isAuthenticated: false, error: null })
             },
 
-            setUser: (user: User) => {
-                set({ user, isAuthenticated: true })
-            },
-
-            setLoading: (loading: boolean) => {
-                set({ isLoading: loading })
-            },
-
-            setError: (error: string | null) => {
-                set({ error })
-            },
-
-            clearError: () => {
-                set({ error: null })
-            },
+            setUser: (user: User) => set({ user }),
+            setLoading: (isLoading: boolean) => set({ isLoading }),
+            setError: (error: string | null) => set({ error }),
+            clearError: () => set({ error: null })
         }),
         {
             name: 'auth-storage',
             partialize: (state) => ({
                 user: state.user,
-                isAuthenticated: state.isAuthenticated,
-            }),
+                isAuthenticated: state.isAuthenticated
+            })
         }
     )
 ) 

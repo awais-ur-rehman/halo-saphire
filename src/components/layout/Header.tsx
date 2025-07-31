@@ -1,5 +1,4 @@
 import { useLocation } from 'react-router-dom'
-import { cn } from '@/utils/cn'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
@@ -10,11 +9,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { 
-  Bell, 
-  Search, 
-  User, 
-  Settings, 
+import {
+  Bell,
+  Search,
+  User,
+  Settings,
   LogOut,
   ChevronRight
 } from 'lucide-react'
@@ -59,14 +58,14 @@ export const Header = () => {
       {/* Breadcrumbs */}
       <nav className="flex items-center space-x-2 text-sm">
         <span className="text-gray-500">Dashboard</span>
-        {breadcrumbs.map((breadcrumb, index) => (
-          <div key={breadcrumb.href} className="flex items-center space-x-2">
-            <ChevronRight className="w-4 h-4 text-gray-400" />
-            <span className="text-gray-900">
-              {breadcrumb.label}
-            </span>
-          </div>
-        ))}
+                            {breadcrumbs.map((breadcrumb) => (
+                      <div key={breadcrumb.href} className="flex items-center space-x-2">
+                        <ChevronRight className="w-4 h-4 text-gray-400" />
+                        <span className="text-gray-900">
+                          {breadcrumb.label}
+                        </span>
+                      </div>
+                    ))}
       </nav>
 
       {/* Right side actions */}

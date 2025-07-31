@@ -8,7 +8,6 @@ import { Input } from '@/components/ui/input'
 import { LoadingSpinner } from '@/components/common/LoadingSpinner'
 import { useAuth } from '@/hooks/useAuth'
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react'
-import type { LoginCredentials } from '@/types/auth'
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email address'),

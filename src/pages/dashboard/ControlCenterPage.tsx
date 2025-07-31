@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react'
 import { useLocations } from '@/hooks/useLocations'
-import { Star, Phone, Globe, MapPin, ShoppingBag, Package } from 'lucide-react'
 
 export const ControlCenterPage = () => {
   const mapRef = useRef<HTMLDivElement>(null)
@@ -31,18 +30,28 @@ export const ControlCenterPage = () => {
             box-shadow: 0 8px 32px rgba(0,0,0,0.12);
             border: none !important;
             outline: none !important;
-            max-width: 320px;
+            max-width: 280px;
+            min-width: 250px;
+            overflow: hidden;
+            position: relative;
+            z-index: 10001;
           }
           .sapphire-popup .leaflet-popup-tip {
             background: white;
             border: none !important;
             outline: none !important;
+            padding: 0;
           }
           .sapphire-popup .leaflet-popup-content {
             margin: 0 !important;
             border: none !important;
             outline: none !important;
-            padding: 0;
+            padding: 16px !important;
+            width: 100% !important;
+            max-width: 280px !important;
+            overflow: hidden;
+            position: relative;
+            z-index: 10001;
           }
           .leaflet-popup {
             z-index: 10000 !important;
@@ -50,12 +59,68 @@ export const ControlCenterPage = () => {
           .leaflet-popup-content-wrapper {
             z-index: 10000 !important;
           }
+          .sapphire-popup-content {
+            font-family: system-ui, -apple-system, sans-serif !important;
+            width: 100% !important;
+            max-width: 280px !important;
+            overflow: hidden !important;
+            direction: ltr !important;
+            text-align: left !important;
+            white-space: normal !important;
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+            position: relative;
+            z-index: 10001;
+            isolation: isolate;
+          }
+          .sapphire-popup-content * {
+            direction: ltr !important;
+            text-align: left !important;
+            white-space: normal !important;
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+            position: relative;
+            z-index: 1;
+          }
+          .sapphire-popup-content h3 {
+            font-weight: 700 !important;
+            color: #1f2937 !important;
+            margin: 0 0 8px 0 !important;
+            font-size: 16px !important;
+            line-height: 1.4 !important;
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+            direction: ltr !important;
+            text-align: left !important;
+            white-space: normal !important;
+            position: relative;
+            z-index: 2;
+          }
+          .sapphire-popup-content .rating-section {
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            margin-bottom: 0 !important;
+            flex-wrap: wrap !important;
+            direction: ltr !important;
+            text-align: left !important;
+            position: relative;
+            z-index: 2;
+          }
+          .sapphire-popup-content .rating-stars {
+            display: flex !important;
+            align-items: center !important;
+            gap: 4px !important;
+            direction: ltr !important;
+            position: relative;
+            z-index: 2;
+          }
         `
         document.head.appendChild(customStyles)
 
-        const centerLat = locations.reduce((sum, loc) => sum + loc.gps_coordinates.latitude, 0) / locations.length
-        const centerLng = locations.reduce((sum, loc) => sum + loc.gps_coordinates.longitude, 0) / locations.length
-
+        const centerLat = 24.8607 // Karachi coordinates
+        const centerLng = 67.0011
+        
         const map = L.map(mapRef.current).setView([centerLat, centerLng], 8)
 
         L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
@@ -69,111 +134,134 @@ export const ControlCenterPage = () => {
             className: 'custom-sapphire-marker',
             html: `
               <div style="
-                width: 20px;
-                height: 20px;
-                background-color: #dc2626;
-                border: 4px solid #ffffff;
-                border-radius: 50%;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.5), 0 0 0 3px rgba(220, 38, 38, 0.4);
+                width: 32px;
+                height: 32px;
+                background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+                border: 3px solid #ffffff;
+                border-radius: 8px;
+                box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 0 0 2px rgba(15, 23, 42, 0.3);
                 position: relative;
-                animation: pulse 1.5s infinite;
+                animation: sapphire-glow 3s infinite;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
               ">
                 <div style="
+                  width: 20px;
+                  height: 20px;
+                  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+                  border-radius: 4px;
+                  box-shadow: 0 3px 12px rgba(251, 191, 36, 0.5);
+                  position: relative;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                ">
+                  <div style="
+                    width: 12px;
+                    height: 12px;
+                    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+                    border-radius: 2px;
+                    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  ">
+                    <div style="
+                      width: 6px;
+                      height: 6px;
+                      background: #fbbf24;
+                      border-radius: 1px;
+                      box-shadow: 0 0 4px rgba(251, 191, 36, 0.8);
+                    "></div>
+                  </div>
+                </div>
+                <div style="
                   position: absolute;
-                  top: 50%;
-                  left: 50%;
-                  transform: translate(-50%, -50%);
-                  width: 8px;
-                  height: 8px;
-                  background-color: #ffffff;
+                  top: -4px;
+                  right: -4px;
+                  width: 12px;
+                  height: 12px;
+                  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+                  border: 2px solid #ffffff;
                   border-radius: 50%;
-                  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+                  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+                  animation: status-pulse 2s infinite;
+                "></div>
+                <div style="
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  bottom: 0;
+                  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+                  border-radius: 8px;
+                  animation: sapphire-shine 4s infinite;
                 "></div>
               </div>
               <style>
-                @keyframes pulse {
-                  0% {
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.5), 0 0 0 3px rgba(220, 38, 38, 0.4);
+                @keyframes sapphire-glow {
+                  0%, 100% {
+                    box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 0 0 2px rgba(15, 23, 42, 0.3);
                     transform: scale(1);
                   }
                   50% {
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.5), 0 0 0 6px rgba(220, 38, 38, 0.1);
+                    box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 0 0 6px rgba(15, 23, 42, 0.1);
+                    transform: scale(1.08);
+                  }
+                }
+                @keyframes status-pulse {
+                  0%, 100% {
+                    opacity: 1;
+                    transform: scale(1);
+                  }
+                  50% {
+                    opacity: 0.8;
                     transform: scale(1.1);
                   }
+                }
+                @keyframes sapphire-shine {
+                  0% {
+                    transform: translateX(-100%) translateY(-100%);
+                  }
+                  50% {
+                    transform: translateX(100%) translateY(100%);
+                  }
                   100% {
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.5), 0 0 0 3px rgba(220, 38, 38, 0.4);
-                    transform: scale(1);
+                    transform: translateX(-100%) translateY(-100%);
                   }
                 }
               </style>
             `,
-            iconSize: [20, 20],
-            iconAnchor: [10, 10],
-            popupAnchor: [0, -10]
+            iconSize: [32, 32],
+            iconAnchor: [16, 16],
+            popupAnchor: [0, -16]
           })
         }
 
         const customIcon = createCustomIcon()
 
-        locations.forEach(location => {
-          const marker = L.marker([location.gps_coordinates.latitude, location.gps_coordinates.longitude], { icon: customIcon })
-            .addTo(map)
-            .bindPopup(`
-              <div style="padding: 0; font-family: system-ui, -apple-system, sans-serif;">
-                <div style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); padding: 16px; border-radius: 12px 12px 0 0; border-bottom: 1px solid #e2e8f0;">
-                  <h3 style="font-weight: 700; color: #1f2937; margin: 0 0 8px 0; font-size: 16px; line-height: 1.4;">${location.title}</h3>
-                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                    <div style="display: flex; align-items: center; gap: 4px;">
-                      <Star style="width: 14px; height: 14px; color: #fbbf24; fill: #fbbf24;" />
-                      <span style="font-weight: 600; color: #374151; font-size: 14px;">${location.rating}</span>
-                    </div>
-                    <span style="color: #6b7280; font-size: 13px;">(${location.reviews} reviews)</span>
-                  </div>
-                  <div style="display: flex; align-items: center; gap: 6px; color: #6b7280; font-size: 13px;">
-                    <MapPin style="width: 12px; height: 12px;" />
-                    <span style="font-weight: 500;">${location.type}</span>
-                  </div>
-                </div>
-                
-                <div style="padding: 16px;">
-                  <div style="margin-bottom: 12px;">
-                    <div style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px;">
-                      <MapPin style="width: 14px; height: 14px; color: #6b7280; margin-top: 2px; flex-shrink: 0;" />
-                      <span style="color: #374151; font-size: 13px; line-height: 1.4;">${location.address}</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                      <Phone style="width: 14px; height: 14px; color: #6b7280; flex-shrink: 0;" />
-                      <span style="color: #374151; font-size: 13px; font-weight: 500;">${location.phone}</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
-                      <Globe style="width: 14px; height: 14px; color: #6b7280; flex-shrink: 0;" />
-                      <a href="${location.website}" target="_blank" style="color: #3b82f6; font-size: 13px; text-decoration: none; font-weight: 500;">Visit Website</a>
-                    </div>
-                  </div>
-                  
-                  <div style="margin-bottom: 12px;">
-                    <div style="font-weight: 600; color: #374151; font-size: 13px; margin-bottom: 6px;">Services Available:</div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-                      ${location.service_options.in_store_shopping ? 
-                        '<div style="display: flex; align-items: center; gap: 4px; background: #dcfce7; color: #166534; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 500;"><ShoppingBag style="width: 12px; height: 12px;" />In-Store Shopping</div>' : ''
-                      }
-                      ${location.service_options.in_store_pickup ? 
-                        '<div style="display: flex; align-items: center; gap: 4px; background: #dbeafe; color: #1e40af; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 500;"><Package style="width: 12px; height: 12px;" />In-Store Pickup</div>' : ''
-                      }
-                    </div>
-                  </div>
-                  
-                  <div style="background: #fef3c7; border-left: 3px solid #f59e0b; padding: 8px 12px; border-radius: 6px;">
-                    <div style="font-weight: 600; color: #92400e; font-size: 12px; margin-bottom: 4px;">Customer Review:</div>
-                    <div style="color: #92400e; font-size: 12px; font-style: italic; line-height: 1.4;">${location.user_review.replace(/"/g, '')}</div>
-                  </div>
-                </div>
-              </div>
-            `, {
-              closeButton: false,
-              className: 'sapphire-popup'
-            })
-        })
+                            locations.forEach(location => {
+                      L.marker([location.gps_coordinates.latitude, location.gps_coordinates.longitude], { icon: customIcon })
+                        .addTo(map)
+                        .bindPopup(`
+                          <div class="sapphire-popup-content">
+                            <h3>${location.title}</h3>
+                            <div class="rating-section">
+                              <div class="rating-stars">
+                                <Star style="width: 14px; height: 14px; color: #fbbf24; fill: #fbbf24;" />
+                                <span style="font-weight: 600; color: #374151; font-size: 14px;">${location.rating}</span>
+                              </div>
+                              <span style="color: #6b7280; font-size: 13px;">(${location.reviews} reviews)</span>
+                            </div>
+                          </div>
+                        `, {
+                          closeButton: false,
+                          className: 'sapphire-popup'
+                        })
+                    })
 
         mapInstanceRef.current = map
       }
