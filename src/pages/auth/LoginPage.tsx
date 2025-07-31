@@ -17,19 +17,22 @@ export const LoginPage = () => {
             
             {/* Spinning Element */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <div className="w-32 h-32 bg-[#f7f7f7] rounded-full flex items-center justify-center transition-all duration-1000 hover:rotate-360 hover:scale-110 group">
-                <div className="w-24 h-24 rounded-full relative">
-                  {/* Outer glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-pink-400 via-purple-500 to-purple-600 rounded-full blur-md opacity-60"></div>
+              <div className="w-96 h-96 bg-[#f7f7f7] flex items-center justify-center transition-all duration-1000 hover:rotate-360 hover:scale-110 group bubble-animation bubble-distort">
+                <div className="w-96 h-96 relative">
+                  {/* Outer glow effect - distorted ring */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-pink-400 via-purple-500 to-purple-600 blur-xl opacity-30 bubble-glow bubble-distort" style={{ borderRadius: '50% 45% 55% 40% / 40% 50% 50% 55%' }}></div>
                   
-                  {/* Main ring */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-pink-400 via-purple-500 to-purple-600 rounded-full"></div>
+                  {/* Golden glow overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-amber-500 to-orange-500 blur-lg opacity-20 crescent-glow bubble-distort" style={{ borderRadius: '50% 45% 55% 40% / 40% 50% 50% 55%' }}></div>
                   
-                  {/* Inner cutout to make it hollow */}
-                  <div className="absolute inset-2 bg-[#f7f7f7] rounded-full"></div>
+                  {/* Main ring with shadow - distorted ring */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-pink-400 via-purple-500 to-purple-600 shadow-2xl bubble-breathe bubble-distort" style={{ borderRadius: '50% 45% 55% 40% / 40% 50% 50% 55%' }}></div>
                   
-                  {/* Inner glow effect */}
-                  <div className="absolute inset-1 bg-gradient-to-r from-pink-400 via-purple-500 to-purple-600 rounded-full blur-sm opacity-40"></div>
+                  {/* Inner spinning glow */}
+                  <div className="absolute inset-2 bg-gradient-to-r from-yellow-400 via-amber-500 to-orange-500 blur-md opacity-60 inner-spin-glow bubble-distort" style={{ borderRadius: '50% 50% 50% 50% / 50% 50% 50% 50%' }}></div>
+                  
+                  {/* Inner cutout to make it completely hollow - distorted ring */}
+                  <div className="absolute inset-4 bg-[#f7f7f7] bubble-distort" style={{ borderRadius: '50% 45% 55% 40% / 40% 50% 50% 55%' }}></div>
                 </div>
               </div>
             </div>
