@@ -40,15 +40,15 @@ export const LoginPage = () => {
             {/* Content */}
             <div className="relative z-10 h-full flex flex-col justify-between p-8 text-black">
               <div>
-                <h3 className="text-sm font-medium opacity-80">A WISE QUOTE</h3>
+                <h3 className="text-lg font-medium opacity-80">HALO.</h3>
               </div>
               
-              <div className="space-y-4">
-                <h2 className="text-4xl font-serif font-bold leading-tight">
-                  Get Everything You Want
+              <div className="space-y-2">
+                <h2 className="text-4xl font-serif font-medium leading-tight">
+                Know Your Customers
                 </h2>
-                <p className="text-lg opacity-90 leading-relaxed">
-                  You can get everything you want if you work hard, trust the process, and stick to the plan.
+                <p className="text-lg opacity-50 leading-relaxed">
+                Turn scattered feedback into actionable insights across every branch location.
                 </p>
               </div>
             </div>
