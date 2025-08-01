@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Target, TrendingUp, TrendingDown, Eye, AlertTriangle, CheckCircle, XCircle } from 'lucide-react'
+import { Target, TrendingUp, Eye, AlertTriangle, CheckCircle, XCircle } from 'lucide-react'
 
 export const CompetitorAnalysisPage = () => {
   const competitors = [
