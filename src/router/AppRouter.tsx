@@ -1,9 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { LoginPage } from '@/pages/auth/LoginPage'
 import { ControlCenterPage } from '@/pages/dashboard/ControlCenterPage'
-import { AnalyticsPage } from '@/pages/dashboard/AnalyticsPage'
-import { InsightsPage } from '@/pages/dashboard/InsightsPage'
-import { PerformancePage } from '@/pages/dashboard/PerformancePage'
+import { BranchesPage } from '@/pages/dashboard/BranchesPage'
+import { CompetitorAnalysisPage } from '@/pages/dashboard/CompetitorAnalysisPage'
 import { ReportsPage } from '@/pages/dashboard/ReportsPage'
 import { SystemSettingsPage } from '@/pages/settings/SystemSettingsPage'
 import { MainLayout } from '@/components/layout/MainLayout'
@@ -27,9 +26,8 @@ export const AppRouter = () => {
         }>
           <Route index element={<Navigate to="/dashboard/control-center" replace />} />
           <Route path="control-center" element={<ControlCenterPage />} />
-          <Route path="analytics" element={<AnalyticsPage />} />
-          <Route path="insights" element={<InsightsPage />} />
-          <Route path="performance" element={<PerformancePage />} />
+          <Route path="branches" element={<BranchesPage />} />
+          <Route path="competitor-analysis" element={<CompetitorAnalysisPage />} />
           <Route path="reports" element={<ReportsPage />} />
         </Route>
 

@@ -8,22 +8,16 @@ export const sidebarItems = [
         href: '/dashboard/control-center'
     },
     {
-        id: 'tab-1',
-        label: 'Store Analytics',
-        icon: 'BarChart3',
-        href: '/dashboard/analytics'
+        id: 'branches',
+        label: 'Branches',
+        icon: 'Building',
+        href: '/dashboard/branches'
     },
     {
-        id: 'tab-2',
-        label: 'Customer Insights',
-        icon: 'Users',
-        href: '/dashboard/insights'
-    },
-    {
-        id: 'tab-3',
-        label: 'Performance',
-        icon: 'TrendingUp',
-        href: '/dashboard/performance'
+        id: 'competitor-analysis',
+        label: 'Competitor Analysis',
+        icon: 'Target',
+        href: '/dashboard/competitor-analysis'
     },
     {
         id: 'tab-4',
@@ -56,9 +50,8 @@ export const routes = [
         element: 'MainLayout',
         children: [
             { path: 'control-center', element: 'ControlCenterPage' },
-            { path: 'analytics', element: 'AnalyticsPage' },
-            { path: 'insights', element: 'InsightsPage' },
-            { path: 'performance', element: 'PerformancePage' },
+            { path: 'branches', element: 'BranchesPage' },
+            { path: 'competitor-analysis', element: 'CompetitorAnalysisPage' },
             { path: 'reports', element: 'ReportsPage' },
         ]
     },

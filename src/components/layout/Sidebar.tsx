@@ -5,26 +5,24 @@ import { Button } from '@/components/ui/button'
 import { sidebarItems, bottomItems } from '@/utils/constants'
 import { 
   LayoutDashboard, 
-  BarChart3, 
-  Users, 
-  TrendingUp, 
   FileText, 
   Settings, 
   LogOut,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Building,
+  Target
 } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import { useUIStore } from '@/store/uiStore'
 
 const iconMap = {
   LayoutDashboard,
-  BarChart3,
-  Users,
-  TrendingUp,
   FileText,
   Settings,
   LogOut,
+  Building,
+  Target,
 }
 
 export const Sidebar = () => {
@@ -55,7 +53,7 @@ export const Sidebar = () => {
     <div className="relative">
       <div
         className={cn(
-          'fixed top-4 left-4 bottom-4 bg-[#f7f7f7] rounded-2xl transition-all duration-300 z-50',
+          'fixed top-4 left-4 bottom-4 bg-[#f7f7f7] rounded-2xl transition-all duration-300 z-50 flex flex-col ',
           sidebarCollapsed ? 'w-16' : 'w-64'
         )}
       >
@@ -95,12 +93,16 @@ export const Sidebar = () => {
               <div key={item.id}>
                 {item.action === 'logout' ? (
                   <Button
-                    variant="ghost"
+                    variant="default"
                     className={cn(
-                      'gap-3 py-2 text-sm font-medium transition-colors',
+                      'flex items-center gap-3 py-2 rounded-lg text-sm font-medium transition-colors',
                       sidebarCollapsed 
-                        ? 'justify-center w-10 h-10 hover:bg-gray-200 rounded-full mx-auto' 
-                        : 'justify-start w-full text-gray-700 hover:bg-gray-100 px-1'
+                        ? active 
+                          ? 'justify-center w-10 h-10 hover:bg-gray-200 rounded-full mx-auto' 
+                          : 'justify-start w-10 h-10 text-gray-700 hover:bg-gray-100 mx-auto'
+                        : active
+                          ? 'bg-black text-white px-1'
+                          : 'text-gray-700 hover:bg-gray-100 px-1'
                     )}
                     onClick={handleLogout}
                   >
@@ -114,8 +116,8 @@ export const Sidebar = () => {
                       'flex items-center gap-3 py-2 rounded-lg text-sm font-medium transition-colors',
                       sidebarCollapsed 
                         ? active 
-                          ? 'justify-center w-10 h-10 bg-black rounded-full mx-auto' 
-                          : 'justify-center w-10 h-10 hover:bg-gray-200 rounded-full mx-auto'
+                          ? 'justify-center w-10 h-10 hover:bg-gray-200 rounded-full mx-auto' 
+                          : 'justify-start w-10 h-10 text-gray-700 hover:bg-gray-100 mx-auto'
                         : active
                           ? 'bg-black text-white px-1'
                           : 'text-gray-700 hover:bg-gray-100 px-1'
